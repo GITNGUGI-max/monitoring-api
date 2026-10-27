@@ -40,4 +40,12 @@ app.get("/metrics", (req, res)=>{
     })
 })
 
-app.listen(port, ()=>console.log(`Monitor API listening to port ${port}`))
+app.listen(port, (error) => {
+    if (error) {
+        console.error("Could not start Monitoring API:", error.message);
+        process.exitCode = 1;
+        return;
+    }
+
+    console.log(`Monitor API listening to port ${port}`);
+});
